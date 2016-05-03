@@ -16,8 +16,8 @@ namespace WebApplication1
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            this.manager.Run();
             this.manager.OnStart();
+            this.manager.Run();
         }
     }
 }
