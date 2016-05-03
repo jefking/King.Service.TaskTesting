@@ -1,5 +1,6 @@
 ﻿using King.Azure.Data;
 using King.Service;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading;
@@ -41,7 +42,13 @@ namespace WebApplication1
     {
         public async Task<bool> Process(object data)
         {
-            await Task.Run(() => { Thread.Sleep(5000); Trace.TraceInformation("Background"); });
+            var id = Guid.NewGuid();
+
+            await Task.Run(() => { Thread.Sleep(5000); Trace.TraceInformation("Background A {0}", id); });
+
+            await Task.Run(() => { Thread.Sleep(10000); Trace.TraceInformation("Background B {0}", id); });
+
+            await Task.Run(() => { Thread.Sleep(15000); Trace.TraceInformation("Background C {0}", id); });
 
             Trace.TraceInformation("Foreground");
 
